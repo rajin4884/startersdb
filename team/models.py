@@ -11,34 +11,46 @@ from tagging.fields import TagField
 
 @python_2_unicode_compatible
 class Company_info(models.Model):
-    company_num = models.IntegerField(primary_key=True)
+    company_num = models.ForeignKey('Member_info', on_delete=models.CASCADE)
     company_name = models.CharField(max_length=20, blank = False)
     company_scale = models.CharField( max_length=20, blank = False)
-    jobCode = models.IntegerField(default=0)
+    jobcode = models.ForeignKey('Occupation_type',  on_delete=models.CASCADE)
 
     def __str__(self):
         return self.company_name
 
+
 class Company_select(models.Model):
-    comp_selnum	 = models.IntegerField(primary_key=True)
-    mem_num	= models.ForeignKey('Member_info', on_delete=models.CASCADE)
-    company_num	= models.ForeignKey('Company_info', on_delete=models.CASCADE)
+    comp_selnum  = models.IntegerField(primary_key=True)
+    mem_num = models.ForeignKey('Member_info', on_delete=models.CASCADE)
+    company_num = models.ForeignKey('Company_info', on_delete=models.CASCADE)
+
 
 class Interview_apply(models.Model):
-    inter_apply_num	= models.IntegerField(primary_key=True)
-    interv_snum	= models.ForeignKey('Company_select', on_delete=models.CASCADE)
-    comp_selnum	= models.ForeignKey('Interview_state', on_delete=models.CASCADE)
-    emplo_fnum	= models.ForeignKey('Employee_form', on_delete=models.CASCADE)
+    inter_apply_num = models.IntegerField(primary_key=True)
+    comp_selnum = models.ForeignKey('Company_select', on_delete=models.CASCADE)
+    interv_snum = models.ForeignKey('Interview_state', on_delete=models.CASCADE, null = True)
+    emplo_fnum  = models.ForeignKey('Employee_form', on_delete=models.CASCADE)
     work = models.CharField(max_length=50, blank = False)
 
+    def __str__(self):
+        return self.work
+
+
 class Interview_state(models.Model):
-    interv_snum	= models.IntegerField(primary_key=True)
-    intervS_info = models.CharField(max_length=50, blank = False)
+    interv_snum = models.IntegerField(primary_key=True)
+    intervs_info = models.CharField(max_length=50, blank = False)
+
+    def __str__(self):
+        return self.intervs_info
 
 
 class Employee_form(models.Model):
     emplo_fnum = models.IntegerField(primary_key=True)
-    emploF_info	= models.CharField(max_length=50, blank = False)
+    emplof_info = models.CharField(max_length=50, blank = False)
+
+    def __str__(self):
+        return self.emplof_info
 
 
 
@@ -64,9 +76,9 @@ class Self_introduction(models.Model):
     mem_num = models.ForeignKey('Member_info', on_delete=models.CASCADE)
     self_intro_cont = models.CharField(max_length=2000, blank=False)
     portfolio_file = models.FileField()
-    inter_occupation1 = models.CharField(max_length=20)
-    inter_occupation2 = models.CharField(null = True, max_length=20)
-    inter_occupation3 = models.CharField(null = True, max_length=20)
+    inter_occupation1 = models.ForeignKey('Occupation_type',  on_delete=models.CASCADE)
+    inter_occupation2 = models.ForeignKey('Occupation_type', related_name='inter_occupation1', null = True, on_delete=models.CASCADE)
+    inter_occupation3 = models.ForeignKey('Occupation_type', related_name='inter_occupation2', null = True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.self_intro_cont
@@ -74,7 +86,7 @@ class Self_introduction(models.Model):
 class Mento_info(models.Model):
     mem_num = models.ForeignKey('Member_info', on_delete=models.CASCADE)
     profile_pic = models.ImageField(blank=False)
-    mento_career = models.CharField(max_length=2000, blank=False)
+    mento_career = models.CharField(max_length=3, blank=False)
     mento_proof_doc = models.FileField(blank=False)
 
 class Occupation_type(models.Model):
@@ -111,7 +123,7 @@ class Board(models.Model):
     owner = models.ForeignKey(User, null=True)
     b_title = models.CharField(max_length = 20, blank = False)
     b_contnet = models.CharField(max_length=500,blank = False)
-    b_published_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    b_published_date = models.DateTimeField(blank=True, null=True)
     b_hit = models.IntegerField( default = 0)
     tag = TagField()
     # b_parent_id = models.IntegerField(null=True, blank = True)
@@ -119,13 +131,13 @@ class Board(models.Model):
 
     def __str__(self):
         return self.b_title
-
+    
 # 후기 게시판
 class Review(models.Model):
     mrapply_num = models.ForeignKey('Mrapply', on_delete=models.CASCADE)
     r_num = models.IntegerField(primary_key=True)
     mrapply_num = models.IntegerField(null = True, blank = True)
-    mr_title = models.CharField("제목", max_length = 20, null = True, blank = False)
+    mr_title = models.CharField("멘티이름", max_length = 20, null = True, blank = False)
     mto_name = models.CharField("멘토이름", max_length = 20, null = True, blank = False)
     r_score = models.IntegerField("조회수", null = True, blank = True, default=0) # 조회 수
     r_content = models.CharField("내용", max_length=500, null = True, blank = False)
@@ -219,12 +231,12 @@ class Mr_Wish(models.Model):
 class Mrapply(models.Model):
     mrapply_num = models.IntegerField(primary_key=True)
     mr_wish_num = models.ForeignKey('Mr_Wish', on_delete = models.CASCADE) # FK
-    mrapply_start = models.DateTimeField(auto_now_add=True)
-    mrapply_con = models.IntegerField(blank = False)
+    mrapply_con = models.ForeignKey('State', on_delete=models.CASCADE)
+    # mrapply_con = models.IntegerField(blank = False)
     mr_pay_method = models.CharField(max_length=10, null=False)
     mr_credit_com = models.CharField(max_length=10, null=True)
     mr_credit_num = models.IntegerField(null=True)
-    mr_apporve_num = models.IntegerField(null=True)
+    # mr_apporve_num = models.IntegerField(null=True)
     mr_approve_date = models.DateTimeField(auto_now_add=True)
     mr_depositless_name = models.CharField(max_length=10, null=True)
     mr_depositless_date = models.DateTimeField(auto_now_add=True)
@@ -250,7 +262,7 @@ class Inter(models.Model):
     inter_pay_method = models.CharField(max_length=10, null=False)
     inter_credit_com = models.CharField(max_length=10, null=True)
     inter_credit_num = models.IntegerField(null=True)
-    inter_apporve_num = models.IntegerField(null=True)
+    # inter_apporve_num = models.IntegerField(null=True)
     inter_approve_date = models.DateTimeField(auto_now_add=True)
     inter_depositless_name = models.CharField(max_length=10, null=True)
     inter_depositless_date = models.DateTimeField(auto_now_add=True)
@@ -266,7 +278,7 @@ class Inter(models.Model):
 class Mtr_info(models.Model):
     mtr_num = models.IntegerField(primary_key=True)
     mem_num = models.ForeignKey('Mento_info', on_delete=models.CASCADE)
-    field = models.CharField(max_length=500,blank=True, null=True)
+    occ_num = models.ForeignKey('Occupation_type', on_delete=models.CASCADE)
     theme =  models.CharField(max_length=100, blank=True, null=True)
     amount = models.IntegerField(blank = False)
     mtr_content =  models.CharField(max_length=500, blank=True, null=True)
@@ -278,10 +290,14 @@ class Mtr_info(models.Model):
 class Mtr_daily_report(models.Model):
     mtr_daily_num = models.IntegerField(primary_key=True)
     mrapply_num = models.ForeignKey('Mrapply', on_delete=models.CASCADE)
-    mtr_lesson = models.CharField(max_length=500, blank=True, null=True)
+    mtr_lesson = models.ForeignKey('State', on_delete=models.CASCADE)
     mtr_date = models.DateField(auto_now_add=True) # 해당 레코드 생성시 현재 시간 자동저장
     mtr_answer = models.CharField(max_length=500, blank=True, null=True)
     mtr_content = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.mtr_content
+
+class State(models.Model):
+    state_num = models.IntegerField(primary_key=True)
+    mtr_lesson = models.CharField(max_length=10, null=False)
