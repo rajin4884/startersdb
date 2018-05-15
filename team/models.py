@@ -5,6 +5,7 @@ from django.db import models
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from tagging.fields import TagField
 
 # Create your models here.
 
@@ -112,6 +113,7 @@ class Board(models.Model):
     b_contnet = models.CharField(max_length=500,blank = False)
     b_published_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     b_hit = models.IntegerField( default = 0)
+    tag = TagField()
     # b_parent_id = models.IntegerField(null=True, blank = True)
     # b_parent_id = models.IntegerField(null = True, blank = True)
 
