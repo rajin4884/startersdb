@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{% block title %}t1801silver{% endblock %}</title>
+
+{% load staticfiles %}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
+<link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />
+
+
+</head>
+
+
+<body>
+  <div class = "grey-topbar">
+    {% if user.is_active %}
+    <ul class="nav nav-bar navbar-right">
+    <h4 class="welcome">{% firstof user.get_short_name user.get_username %} 스타터님 안녕하세요!
+                <a href="{% url 'password_change' %}">회원정보 수정<i class="fa fa-exchange"></i></a> /
+                <!-- <img src="static/img/LOGOSS.png"/> -->
+                <a href="{% url 'logout' %}">로그아웃<i class="fa fa-sign-out"></i></a>
+    </h4>
+  </ul>
+    {% else %}
+    <ul class="nav nav-bar navbar-right">
+    <h4 class="welcome">환영합니다. 스타터님 &nbsp;&nbsp;
+                <a href="{% url 'login' %}">로그인<i class="fa fa-sign-in"></i></a> &nbsp;<a class="splitbar">/</a>&nbsp;
+                <a href="{% url 'register' %}">회원가입<i class="fa fa-sign-in"></i></a>
+    </h4>
+  </ul>
+  {% endif %}
+  </div>
+  <div class="mymenu">
+    <nav class="nav navbar-default " role="navigation">
+        <div class = "navbar-header">
+          <button type = "button" class = "navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">너나들이</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="{% url 'home' %}" class="navbar-brand django">
+            <!-- <img src="static/img/LOGOSS.png"/> -->
+          <strong>너나들이</strong></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown" id="company">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">기업소개<span class="caret"/>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'bookmark:index' %}">기업소개</a></li>
+                <li><a href="{% url 'bookmark:add' %}">연혁</a></li>
+                <li><a href="{% url 'bookmark:change' %}">찾아오시는 길</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">실버시터<span class="caret"/>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'blog:index' %}">실버시터란?</a></li>
+                <li><a href="{% url 'blog:add' %}">서비스 사례</a></li>
+                <li><a href="{% url 'blog:change' %}">서비스 범위</a></li>
+              </ul>
+          </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">시터용품<span class="caret"/>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'photo:index' %}">보조기구</a></li>
+                <!-- <li><a href="{% url 'photo:album_add' %}">앨범 추가</a></li>
+                <li><a href="{% url 'photo:album_change' %}">앨범 변경</a></li>
+                <li><a href="{% url 'photo:photo_add' %}">사진 추가</a></li>
+                <li><a href="{% url 'photo:photo_change' %}">사진 변경</a></li> -->
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">신청<span class="caret"/>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'blog:index' %}">신청방법</a></li>
+                <li><a href="{% url 'blog:add' %}">약관</a></li>
+                <li><a href="{% url 'blog:change' %}">신청서</a></li>
+              </ul>
+          </li>
+            <li><a href="{% url 'blog:post_archive' %}">소통</a></li>
+            <li><a href="{% url 'blog:search' %}">검색</a></li>
+            <!-- <li><a href="{% url 'admin:index' %}">관리자</a></li> -->
+            {% if user.is_active %}
+            <li><a href="{% url 'admin:index' %}">관리자</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">너나들이팀<span class="caret"/>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'team:topic' %}">주제</a></li>
+                <li><a href="{% url 'team:member' %}">팀소개</a></li>
+                <li><a href="{% url 'team:settings' %}">개발환경</a></li>
+                <li><a href="{% url 'plan:index' %}">설계</a></li>
+                <li><a href="{% url 'team:sitemap' %}">사이트맵</a></li>
+                <li><a href="{% url 'design:index' %}">디자인</a></li>
+                <li><a href="{% url 'progress:index' %}">진척사항</a></li>
+              </ul>
+            </li>
+            {% endif %}
+          </ul>
+
+        </div>
+      </nav>
+  </div>
+
+
+  <!-- <script src="static/js/jquery-2.1.3.min.js"></script> -->
+  <!-- <script src="static/js/bootstrap.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+/*Add class when scroll down*/
+$(window).scroll(function(event){
+     var scroll = $(window).scrollTop();
+    if (scroll >= 50) {
+        $(".go-top").addClass("show");
+    } else {
+        $(".go-top").removeClass("show");
+    }
+});
+/*Animation anchor*/
+$('a').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top
+    }, 1000);
+});
+</script>
+
+
+
+<div class="contentwh">
+{% block content %}
+<div class="homehe">
+   <a> dkdkdkdkdkk</a>
+</div>
+
+{% endblock %}
+
+</div>
+
+{% block footer %}
+{% endblock %}
+
+</body>
+</html>

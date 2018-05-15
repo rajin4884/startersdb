@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}1조 블로그{% endblock %}
+
+{% block content %}
+<div id="content">
+    <h1>{{ object.title }}</h1>
+<br>
+    <ul>
+        <li class="nono">주소: <a href="{{ object.url }}">{{ object.url }}</a></li>
+    </ul>
+</div>
+{% endblock %}

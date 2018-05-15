@@ -1,0 +1,137 @@
+https://tuwlab.com/ece/26465
+
+
+from team.models import *
+
+=====================멤버 시작===========
+
+from team.models import Member_info
+
+Member_info.objects.create(mem_Num = 123, mem_ID = 'asdf', mem_PW = 'asdfasdf',mem_Gender = '여', mem_Birth = '19970901', mem_HP = '01012341234', mem_Email = 'asdf@naver.com', mem_Add = '서울시송파구장지동', mem_Name = '정현진', mem_Rank = '관리자', mem_DIV = '관리자')
+
+=====================멤버 끝===========
+=====================멘토 시작===========
+
+me = Member_info.objects.get(mem_Num=123)
+
+Mento_info.objects.create(mem_Num = me, mento_Career = '한양여자대학교 정보경영과')
+
+=====================멘토 끝===========
+=====================자기소개서 시작===========
+
+Self_introduction.objects.create(mem_Num = me, self_intro_cont = '22살 여자  학생입니다.', inter_occupation1 = '컴퓨터')
+
+=====================자기소개서 끝===========
+=====================직종 선택 시작===========
+
+Occupation_type.objects.create(occ_Num = 456, occ_Name = '직종')
+
+=====================직종 선택 시작===========
+=====================멤버 직종 선택 시작===========
+
+oc = Occupation_type.objects.get(occ_Num = 456)
+
+Member_occupation.objects.create(mem_occ_Num = '789', mem_Num = me, occ_Num = oc)
+
+=====================멤버 직종 선택 끝===========
+====================보드 시작==================
+Board_C.objects.create(b_categ_num = 1, b_categ_name = '자주묻는질문')
+
+free = Board_C.objects.get(b_categ_num=1)
+
+Board.objects.create(b_categ_num = 1, b_title = '프로그램상의 문제', b_contnet = '이용에 불편을 드려 죄송합니다.')
+
+Board.objects.all()
+
+me = Member_info.objects.get(mem_Num=123)
+====================보드 끝==================
+
+====================멘토링 찜하기 시작====================
+
+from team.models import *
+from team.models import Member_info
+
+Member_info.objects.create(mem_Num=10,mem_ID='abc', mem_PW='abcd', mem_Gender='F', mem_Birth=1995, mem_HP=123456, mem_Email='abc@naver.com', mem_Add='서울', mem_Name='나', mem_Rank='VIP', mem_DIV='멘티')
+>>> Member_info.objects.all()
+<QuerySet [<Member_info: 나>]>
+mem = Member_info.objects.get(mem_Num=10)
+
+from team.models import Mento_info
+Mento_info.objects.create(mem_Num=mem)
+mem = Mento_info.objects.get(mem_Num=10)
+
+from team.models import Mtr_info
+Mtr_info.objects.create(mtr_num=20, mem_Num=mem, field='IT', theme='IT에 대해서', amount=10000, mtr_content='IT에 대해서 다같이 배워봅시다.', fixed_people=3)
+
+mtr = Mtr_info.objects.get(mtr_num=20)
+mem = Member_info.objects.get(mem_Num=10)
+
+from team.models import Mr_Wish
+Mr_Wish.objects.create(mr_wish_num=11, mem_Num=mem, mtr_num=mtr)
+Mr_Wish.objects.all()
+
+====================멘토링 찜하기 끝====================
+====================멘토링신청정보 시작====================
+
+from team.models import *
+
+mr_wish = Mr_Wish.objects.get(mr_wish_num=11)
+
+Mrapply.objects.create(mrapply_num=30, mr_wish_num=mr_wish, mrapply_con=0, mr_pay_method='카드', mr_payamount=20000)
+
+====================멘토링신청정보 끝====================
+====================멘토링신청정보 상태 시작====================
+
+from team.models import *
+
+Mrapply_State.objects.create(mrapply_con=0, mrapply_name='진행중')
+Mrapply_State.objects.create(mrapply_con=1, mrapply_name='완료')
+
+====================멘토링신청정보 상태 끝====================
+====================면접수수료결제정보 시작====================
+
+from team.models import *
+
+Interview_apply.objects.create(inter_apply_num=50, work='IT')
+
+
+Inter.objects.create(inter_num=40, inter_apply_num=mr_wish, inter_pay_method='카드', inter_payamount=30000)
+
+====================면접수수료결제정보 끝====================
+
+from team.models import Inter
+
+Inter.objects.all()
+
+from team.models import Board
+
+Board.objects.create(board=123456, b_title='게시판', b_num=123, b_contnet='강아지 귀여운거 인정' )
+
+Board.objects.all()
+
+from team.models import Board_C
+Board_C.objects.create(board_c=123456, b_categ = 1, b_categ_name = '자주묻는질문')
+
+from team.models import Review
+
+Review.objects.create(mrapply_num = 2, men_num = 3, mr_title = 'ㅇㅇ', mto_name = '엄혜진', r_score = 1 ,r_content = '하하하하')
+
+
+from team.models import Company_info
+
+Company_info.objects.create(company_Num='123456', company_Name='김영철강', company_Scale='대기업')
+
+Company_info.objects.all()
+
+from team.models import Company_select
+
+from team.models import Company_info
+Company_info.objects.create(mem_Name='조혜영')
+
+from team.models import Member_info
+
+Company_info.objects.create(mem_Name='조혜영')
+
+Member_info.objects.create(mem_Name='조혜영')
+
+from team.models import Mrapply

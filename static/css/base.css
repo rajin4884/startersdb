@@ -1,0 +1,276 @@
+body{
+  background: white;
+}
+
+.contentwh{
+  width: 70%;
+  margin-left: 15%;
+  margin-left: 15%;}
+
+.mymenu{
+    width: 70%;
+    margin-left: 15%;
+    margin-left: 15%;
+}
+
+.container{
+  width: 100%;
+}
+.rowimg{
+  width: 100%;
+
+}
+
+.grey-topbar{
+  width: 100%;
+  height: 30px;
+  background: #0F8A08;
+}
+
+.navbar-default{
+  background: #fff;
+  border: 0px;
+  -webkit-box-shadow: none;
+   box-shadow: none;
+}
+
+/* 로고이미지 */
+a.topimg img{
+  width: 100%;
+  padding: 0;
+}
+
+/* 오른쪽 부분 환영합니다~ 부분 텍스트 컬러 하얗게 */
+.welcome{
+  color: #fff;
+  font-size: 13px;
+  padding-right: 15px;
+}
+
+/* 내비에 사이트 이름 큰 부분 */
+.navbar-default .navbar-brand {
+    color: #0F8A08;
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+/* 내비에 사이트 이름 큰 부분 hover할 때*/
+a.navbar-brand.django:hover {
+    color: #0F8A08;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    /* border-color: #e7e7e7; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+    color: #000;
+    background-color: #fff;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
+  color: white;
+}
+
+
+
+/* 내비바 하버시 텍스트 컬러 까맣게 */
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+  color: #000;
+}
+
+
+/* 드랍다운시 드랍다운 메뉴 색상 지정. (북마크, 블로그, 사진, 설문 등등.) */
+.navbar-default .navbar-nav>.open>a:hover{
+  background: #fff;
+  color: #000;
+
+}
+
+/* 드랍다운 시 아래로 내려오는 ul, li들. 화면축소시 드랍다운 내비바에 뒤로 비쳐보이는 현상 z-index로 해결 */
+ul.dropdown-menu.show {
+  padding: 0;
+  z-index: 100px;
+}
+
+
+/* 드랍다운 안에 메뉴 */
+.dropdown-menu>li>a {
+    display: block;
+    clear: both;
+    color: #000;
+    white-space: nowrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #777;
+    font-size: 15px;
+}
+
+.dropdown-menu>li>a:hover {
+    display: block;
+    clear: both;
+    white-space: nowrap;
+    background: #0F8A08;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* 상단바에 로그인 부분 (비번바꾸기&로그아웃 등) 텍스트 색*/
+.welcome a, a:focus{
+  color: #000;
+}
+.welcome a:hover, a:focus{
+  color: #fff;
+}
+
+
+/* 환영합니다 로그인 / 회원가입 에서 '/'이거 */
+.welcome a.splitbar:hover {
+
+    color: #000;
+}
+
+
+/* 그 이외의 a태그 색상. */
+a, a:focus {
+  color: #000;
+}
+
+a:hover, a:focus{
+  color: #000;
+  text-decoration: none;
+}
+
+/* ###########################  드랍다운 메뉴 설정들  ########################### */
+/* li:hover {
+  background: #53B2A0;
+} */
+
+
+/* 드랍다운 메뉴 하버 */
+.navbar-nav li:hover {
+  background: #fff;
+}
+
+.dropdown li:hover {
+  background: #0F8A08;
+}
+
+.dropdown-menu {
+  min-width: 100%;
+  padding: 10px 0;
+
+}
+
+.btn-primary{
+  background: #0F8A08;
+  border: 1px solid #0F8A08;
+  color: #000;
+  box-shadow: none;
+
+}
+
+.btn-primary:hover {
+  background: #0F8A08;
+  border: 1px solid #0F8A08;
+  color: #fff;
+  /* text-decoration: underline; */
+}
+
+.btn-default{
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  box-shadow: none;
+}
+
+.btn-default:hover {
+  background: #fff;
+  border: 1px solid #000;
+  color: #000;
+  text-decoration: underline;
+}
+
+/* ###################################################################### */
+
+
+/*######################  albul_list.html 변경 설정  ########################*/
+
+#content {
+  /* margin-left: 50px; */
+}
+
+
+.clear_float {
+  margin-top: 50px;
+}
+
+.button {
+  margin-top: 15px;
+}
+
+
+/* ###################################################################### */
+
+/* TABLE
+table {
+border-collapse: collapse;
+}
+
+td, th {
+line-height: 18px;
+border-bottom: 1px solid #eee;
+vertical-align: top;
+padding: 5px 15px;
+font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+table.change-list, table.change-list th, table.change-list td {
+border: 1px solid #ccc;
+} */
+/* ###################################################################### */
+
+
+.go-top{
+	display:block;
+	width:40px;
+	height:40px;
+	line-height:35px;
+	text-align:center;
+	font-size:30px;
+	position:fixed;
+	bottom:-40px;
+	right:20px;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+	background-color:#404040;
+	color:#FFFFFF;
+	text-decoration:none;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+.go-top.show{
+	bottom:20px;
+}
+
+.go-top:hover{
+	background-color:#5DBA9D;
+	color:#FFFFFF;
+}
+
+.wrapper{
+	margin:auto;
+	width:700px;
+	text-align:left;
+}

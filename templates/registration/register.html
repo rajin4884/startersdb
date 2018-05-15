@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}스타터스{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div id="content">
+
+    <h1>회원가입</h1>
+
+    <!-- <form method="post" action="."> <input type='hidden' name='csrfmiddlewaretoken' value='mv24_xyu5*=nv+l$*sqn_ilnx3q93*#o-o^3&3an-r*-4%yfxi' /> -->
+
+
+
+    <!--<p>Please enter your username etc.</p>-->
+
+    <fieldset class="aligned">
+
+      <div class="form-row">
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp아이디 : <input type="text" name="username" maxlength="150" autofocus required id="id_username" />
+     </div>
+
+     <div class="form-row">
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   비밀번호 : <input type="text" name="password" maxlength="150" autofocus required id="id_username" />
+     </div>
+
+     <div class="form-row">
+       &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp비밀번호 확인 : <input type="password" name="username" maxlength="150" autofocus required id="id_username" />
+     </div>
+
+         <div class="form-row">
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp이메일 : <input type="text" name="username" maxlength="150" autofocus required id="id_username" />
+         </div>
+      <div class="form-row">
+        비밀번호 찾을 질문:
+        <select>
+            <option>추억의 장소는?</option>
+            <option  selected="selected">제일 좋아하는 가수 이름?</option>
+            <option>엄마가 좋아 아빠가 좋아?</option>
+            <option>몇년도 생인가?</option>
+            <option>출신 대학교는?</option>
+        </select>
+      </div>
+      <div class="form-row">
+           &nbsp&nbsp&nbsp&nbsp   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp질문의 답 : <input type="text" name="username" maxlength="150" autofocus required id="id_username" />
+         </div>
+
+
+
+
+
+    </fieldset>
+
+    <div>
+      <a href="{% url 'register_done' %}">
+        <input type="submit" class = "btn btn-default" value="회원가입"/>
+    </div>
+
+    <script type="text/javascript">document.getElementById("id_username").focus();</script>
+    </form>
+
+</div>
+
+{% endblock %}

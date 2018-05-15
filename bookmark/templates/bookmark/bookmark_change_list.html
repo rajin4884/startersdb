@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}1조 블로그{% endblock %}
+
+{% block content %}
+<div id="content">
+
+    <!-- 내비게이션 tab -->
+    <div class="nav nav-tabs">
+      <li><a href=href="{% url 'bookmark:index' %}">기업소개</a></li>
+      <li><a href="{% url 'bookmark:add' %}">연혁</a></li>
+      <li class="active"><a href="{% url 'bookmark:change' %}">찾아오시는 길</a></li>
+    </div>
+
+    <!-- 내비게이션 세로형 -->
+    <!-- <div class="nav nav-pills nav-stacked" style="float:left">
+      <li><a href=href="{% url 'bookmark:index' %}">기업소개</a></li>
+      <li><a href="{% url 'bookmark:add' %}">연혁</a></li>
+      <li class="active"><a href="{% url 'bookmark:change' %}">찾아오시는 길</a></li>
+    </div> -->
+
+    <h1>북마크 변경 - {{user}}</h1>
+
+    <table class="change-list table-striped">
+        <tr>
+            <th>제목</th>
+            <th>주소</th>
+            <th>작성자</th>
+            <th>업데이트</th>
+            <th>삭제</th>
+        </tr>
+
+        {% for item in object_list %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.url }}</td>
+            <td>{{ item.owner }}</td>
+            <td><a href="{% url 'bookmark:update' item.id %}">업데이트</a></td>
+            <td><a href="{% url 'bookmark:delete' item.id %}">삭제</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}
+
+
+<!--class="table table-hover table-striped"  -->

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}1조 블로그{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<div id="content">
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<br>
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+    <br>
+{% endfor %}
+<br>
+<button type="submit" class="btn btn-default">투표하기</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}1조 블로그{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+<div id="content">
+
+  <!-- 내비게이션 tab -->
+  <div class="nav nav-tabs">
+    <li class="active"><a href="{% url 'photo:index' %}">보조기구</a></li>
+  </div>
+
+  <!-- 내비게이션 세로형 -->
+  <!-- <div class="nav nav-pills nav-stacked" style="float:left">
+    <li class="active"><a href="{% url 'photo:index' %}">보조기구</a></li>
+  </div> -->
+
+    {% for item in object_list %}
+
+    <div class="clear_float">
+        <h2 style="display:inline"><a href="{% url 'photo:album_detail' item.id %}">{{ item.name }}</a></h2>
+        &emsp;<b><i>{{ item.description }}</i></b>
+        <br />
+        <div class="button">
+          <a href="{% url 'photo:photo_add' %}" class="btn btn-primary" role="button">추가</a>
+          <a href="{% url 'photo:photo_change' %}" class="btn btn-default" role="button">변경</a>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="album-list">
+        {% for photo in item.photo_set.all|slice:":5" %}
+        <div class="album-list-photo">
+            <a href="{{ photo.get_absolute_url }}">
+            <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}

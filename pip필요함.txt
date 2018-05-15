@@ -1,0 +1,8 @@
+pip install django-disqus
+pip install tagging
+pip install django-tagging
+pip install Pillow
+g
+
+
+ push origin +master

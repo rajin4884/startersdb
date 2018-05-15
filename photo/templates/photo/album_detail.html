@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}1조 블로그{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+<div id="content">
+
+    <h2 style="display:inline-block">{{ object.name }}</h2>
+    &emsp;<b><i>{{ object.description }}</i></b>
+
+<div class="button">
+  <a href="{% url 'photo:index' %}" class="btn btn-primary" role="button">앨범 목록</a>
+</div>
+
+    <hr/>
+
+    <div class="album-detail">
+        {% for photo in object.photo_set.all %}
+        <div class="album-detail-photo">
+            <a href="{{ photo.get_absolute_url }}">
+            <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
+            </a>
+            <li>{{ photo.title }}</li>
+            <li>{{ photo.upload_date|date:"Y-m-d" }}</li>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

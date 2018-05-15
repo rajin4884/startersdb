@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}1조 블로그{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/home.css" %}{% endblock %}
+
+{% block content %}
+<div class ="teaminro">
+
+<center><h2><strong>- 팀소개</strong></h2><br>
+<너나들이><br>
+<img src="/static/img/logo1.png" style="width:300px"><br>
+팀프로젝트를 진행하면서 서로가 신뢰가 없어 말을 제대로 하지 못한다면 그것은 제대로된 팀프로젝트가 될 수 없습니다.<br>
+자신의 의견을 적극적으로 말 할 수 있는 팀이 되고자 합니다.
+<center></div>
+
+<br><br><br><br><br>
+<div><center>
+<h2><strong>- 팀원소개</strong></h2><br>
+너나들이 팀은 총 5명으로 구성되어있습니다.<br>
+215230094 조혜영 - 디자인 팀장<br>
+216230105 엄혜진 - 개발 팀장<br>
+216230111 정현진 - 관리 팀장<br>
+216230114 양지선 - 기획 팀장<br>
+214230098 문혜리 - PM<br><center>
+</div>
+{%endblock%}

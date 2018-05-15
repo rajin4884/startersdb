@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}1조 블로그{% endblock %}
+
+{% block content %}
+<div id="content">
+
+    <!-- 내비게이션 tab -->
+    <div class="nav nav-tabs">
+      <li class="active"><a href=href="{% url 'bookmark:index' %}">기업소개</a></li>
+      <li><a href="{% url 'bookmark:add' %}">연혁</a></li>
+      <li><a href="{% url 'bookmark:change' %}">찾아오시는 길</a></li>
+    </div>
+
+    <!-- 내비게이션 세로형 -->
+    <!-- <div class="nav nav-pills nav-stacked" style="float:left">
+      <li class="active"><a href=href="{% url 'bookmark:index' %}">기업소개</a></li>
+      <li><a href="{% url 'bookmark:add' %}">연혁</a></li>
+      <li><a href="{% url 'bookmark:change' %}">찾아오시는 길</a></li>
+    </div> -->
+  
+    <h1>북마크 목록</h1>
+    <br>
+    <ul>
+        {% for bookmark in object_list %}
+            <li class="nono"><a href="{% url 'bookmark:detail' bookmark.id %}">{{ bookmark }}</a></li>
+            <br>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
