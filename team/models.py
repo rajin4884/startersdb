@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 class Company_info(models.Model):
     company_num = models.IntegerField(primary_key=True)
     company_name = models.CharField(max_length=20, blank = False)
-    company_Scale = models.CharField( max_length=20, blank = False)
+    company_scale = models.CharField( max_length=20, blank = False)
     jobCode = models.IntegerField(default=0)
 
     def __str__(self):
@@ -201,7 +201,7 @@ class Review(models.Model):
 # 멘토링찜하기
 class Mr_Wish(models.Model):
     mr_wish_num = models.IntegerField(primary_key=True)
-    mem_Num = models.ForeignKey('Member_info', on_delete = models.CASCADE) # FK
+    mem_num = models.ForeignKey('Member_info', on_delete = models.CASCADE) # FK
     mtr_num = models.ForeignKey('Mtr_info', on_delete = models.CASCADE) # FK, 180514 수정
 
 
@@ -263,7 +263,7 @@ class Inter(models.Model):
 # 지선
 class Mtr_info(models.Model):
     mtr_num = models.IntegerField(primary_key=True)
-    mem_Num = models.ForeignKey('Mento_info', on_delete=models.CASCADE)
+    mem_num = models.ForeignKey('Mento_info', on_delete=models.CASCADE)
     field = models.CharField(max_length=500,blank=True, null=True)
     theme =  models.CharField(max_length=100, blank=True, null=True)
     amount = models.IntegerField(blank = False)
