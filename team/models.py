@@ -136,7 +136,7 @@ class Board(models.Model):
 class Review(models.Model):
     mrapply_num = models.ForeignKey('Mrapply', on_delete=models.CASCADE)
     r_num = models.IntegerField(primary_key=True)
-    mrapply_num = models.IntegerField(null = True, blank = True)
+    # mrapply_num = models.IntegerField(null = True, blank = True)
     mr_title = models.CharField("멘티이름", max_length = 20, null = True, blank = False)
     mto_name = models.CharField("멘토이름", max_length = 20, null = True, blank = False)
     r_score = models.IntegerField("조회수", null = True, blank = True, default=0) # 조회 수
